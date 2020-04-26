@@ -1,10 +1,15 @@
-body {
+body{
+  background-color: black;
+}
+
+.letter-animation-section {
   background-color: black;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  color: white;
 }
 
 img {
@@ -16,4 +21,8 @@ img {
 
 .letter-1 {
   width: 80px;
+}
+#padded-space-container{
+  height: 100px;
+  background-color: black;
 }

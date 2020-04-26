@@ -1,21 +1,44 @@
 import React, { useEffect } from "react";
-import { TimelineLite } from "gsap";
+import { TimelineMax, TweenMax, TimelineLite } from "gsap/all";
 import { letterArray } from "./constants/images";
-import "./App.css";
+import ScrollMagic from "scrollmagic";
+import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
 
+import "./App.css";
 const App = () => {
   let tween = new TimelineLite();
+  let controller = new ScrollMagic.Controller();
+  ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
+
   let imageElements = [];
 
   useEffect(() => {
     imageElements.map((letter) => {
-      return tween.to(letter, randomPositionGenerator());
+      return tween.to(letter, 0, randomPositionGenerator());
     });
+    tween.to(imageElements, 10, {
+      autoAlpha: 1,
+      ease: "slow(0.7, 0.7, false)",
+    });
+    playArrangeTextAnimation();
+  });
 
-    tween
-      .to(imageElements, 3, { autoAlpha: 1 })
-      .to(imageElements, 1, { x: 0, y: 0, z: 0, autoAlpha: 1 });
-  }, [imageElements, tween]);
+  const playArrangeTextAnimation = () => {
+    const tween = TweenMax.to(imageElements, 1.8, {
+      x: 0,
+      y: 0,
+      z: 0,
+      autoAlpha: 1,
+      ease: "expo.out",
+      scale: 1,
+    });
+    return new ScrollMagic.Scene({
+      triggerElement: "#letter-animation",
+      offset: 400,
+    })
+      .setTween(tween)
+      .addTo(controller);
+  };
 
   const renderLetters = () => {
     return letterArray.map((imgUrl, index) => {
@@ -33,6 +56,7 @@ const App = () => {
   const randomPositionGenerator = (absoluteRange = 300) => {
     let min = Math.ceil(-absoluteRange);
     let max = Math.floor(absoluteRange);
+
     const randomNumber = () =>
       Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -40,13 +64,19 @@ const App = () => {
       x: randomNumber(),
       y: randomNumber(),
       z: randomNumber(),
+      scale: 1.7,
       autoAlpha: 0,
     };
   };
 
   return (
     <div className="container">
-      <div>{renderLetters()}</div>
+      <div id="padded-space-container" />
+      <section id={"letter-animation"} className="letter-animation-section">
+        <div id={"letters-div"} className={"render-letters-div"}>
+          {renderLetters()}
+        </div>
+      </section>
     </div>
   );
 };
