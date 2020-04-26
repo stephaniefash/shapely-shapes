@@ -12,6 +12,7 @@ body{
   color: white;
 }
 
+
 img {
   padding: 30px;
   width: 120px;
@@ -22,6 +23,7 @@ img {
 .letter-1 {
   width: 80px;
 }
+
 #padded-space-container{
   height: 100px;
   background-color: black;
