@@ -1,5 +1,7 @@
-body{
+.container {
   background-color: black;
+  height: 100vh;
+  padding-bottom: 200px;
 }
 
 .letter-animation-section {
@@ -8,10 +10,10 @@ body{
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
+  margin-top: 0px;
   color: white;
 }
-
 
 img {
   padding: 30px;
@@ -24,7 +26,7 @@ img {
   width: 80px;
 }
 
-#padded-space-container{
+#padded-space-container {
   height: 100px;
   background-color: black;
 }

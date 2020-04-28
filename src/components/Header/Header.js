@@ -1,42 +1,66 @@
 import React, { useEffect } from "react";
-import { TimelineMax, TweenMax, TimelineLite } from "gsap/all";
+import { TimelineLite, TimelineMax, TweenMax, Power3 } from "gsap/all";
 import { letterArray } from "../../constants/images";
 import ScrollMagic from "scrollmagic";
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
 
 import "./Header.css";
+
+ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
+
 const Header = () => {
-  let tween = new TimelineLite();
+  let tl = new TimelineLite();
   let controller = new ScrollMagic.Controller();
-  ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
 
   let imageElements = [];
 
   useEffect(() => {
-    imageElements.map((letter) => {
-      return tween.to(letter, 0, randomPositionGenerator());
-    });
-    tween.to(imageElements, 2, {
-      autoAlpha: 1,
-      ease: "slow(0.7, 0.7, false)",
-    });
-    playArrangeTextAnimation();
+    scatterTextAnimation();
+    pinAnimationOnPage();
+    reArrangeTextAnimation();
   });
 
-  const playArrangeTextAnimation = () => {
-    const tween = TweenMax.to(imageElements, 1.8, {
+  const scatterTextAnimation = () => {
+    imageElements.map((letter) => {
+      return tl.add(TweenMax.to(letter, 0, generatePositionWithinRange()));
+    });
+  };
+
+  const reArrangeTextAnimation = () => {
+    const tween = TweenMax.to(imageElements, 1, {
       x: 0,
       y: 0,
       z: 0,
       autoAlpha: 1,
       ease: "expo.out",
-      scale: 1,
+      scale: 0.5,
     });
     return new ScrollMagic.Scene({
-      triggerElement: "#letter-animation",
-      offset: 400,
+      triggerElement: "#letters-div",
     })
       .setTween(tween)
+      .addIndicators()
+      .addTo(controller);
+  };
+
+  const pinAnimationOnPage = () => {
+    const element = "#letter-animation";
+
+    const blackBackgroundTween = TweenMax.to(element, 0.5, {
+      backgroundColor: "#BD14B9",
+    });
+
+    const redBackgroundTween = TweenMax.to(element, 0.5, {
+      backgroundColor: "redBackgroundTween",
+    });
+
+    return new ScrollMagic.Scene({
+      triggerHook: "onLeave",
+      triggerElement: element,
+      duration: "160%",
+    })
+      .setTween([redBackgroundTween, blackBackgroundTween])
+      .setPin(element)
       .addTo(controller);
   };
 
@@ -53,7 +77,7 @@ const Header = () => {
     });
   };
 
-  const randomPositionGenerator = (absoluteRange = 200) => {
+  const generatePositionWithinRange = (absoluteRange = 200) => {
     let min = Math.ceil(-absoluteRange);
     let max = Math.floor(absoluteRange);
 
@@ -64,12 +88,11 @@ const Header = () => {
       x: randomNumber(),
       y: randomNumber(),
       z: randomNumber(),
-      autoAlpha: 0,
     };
   };
 
   return (
-    <div className="container">
+    <div id="container" className="container">
       <div id="padded-space-container" />
       <section id={"letter-animation"} className="letter-animation-section">
         <div id={"letters-div"} className={"render-letters-div"}>
