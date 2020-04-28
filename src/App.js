@@ -11,7 +11,7 @@ const App = () => {
         <Header />
       </div>
       <Article id="article" text={""} header={"d"} />
-      <FactsSection /> dfhdjkhklghlkj
+      <FactsSection />
     </div>
   );
 };

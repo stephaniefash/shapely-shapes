@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./FactsSection.css";
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
 import ScrollMagic from "scrollmagic";
-import { TimelineLite, TimelineMax, TweenMax, Linear } from "gsap/all";
+import { TimelineLite, TimelineMax, TweenMax } from "gsap/all";
 
 export const FactsSection = () => {
   let tl = new TimelineLite();
@@ -10,20 +10,30 @@ export const FactsSection = () => {
   ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
 
   useEffect(() => {
-    centerMainTextOnLoad();
-    setMovingMainText();
+    positionMediaItemOnLoad();
+    moveMediaItemsOnScroll();
   });
 
-  const centerMainTextOnLoad = () => {
+  const positionMediaItemOnLoad = () => {
     const tween = TweenMax.to("#main-text", 0, {
       x: window.innerWidth / 2,
     });
-    tl.add(tween);
+
+    const jeanJacketTween = TweenMax.to("#jean-jacket", 0, {
+      x: 320,
+      y: -2000,
+    });
+
+    tl.add([tween, jeanJacketTween]);
   };
 
-  const setMovingMainText = () => {
+  const moveMediaItemsOnScroll = () => {
     const tween = TweenMax.to("#main-text", {
-      translateX: "-40%",
+      translateX: "-60%",
+    });
+
+    const jeanJacketTween = TweenMax.to("#jean-jacket", {
+      translateY: 0,
     });
 
     new ScrollMagic.Scene({
@@ -31,13 +41,19 @@ export const FactsSection = () => {
       triggerElement: "#facts-section-container",
       duration: "100%",
     })
-      .setTween(tween)
+      .setTween([tween, jeanJacketTween])
       .setPin("#facts-section-container")
       .addTo(controller);
   };
 
   return (
     <div id="facts-section-container" className="facts-section-container">
+      <img
+        id="jean-jacket"
+        className="jeans-image"
+        src="https://media.allure.com/photos/5ca2914d665f528695228fca/master/w_2364,h_3000,c_limit/0519-allure-covershoot-model-adut-balenciaga-shirt.png"
+        alt={"jeans"}
+      />
       <h1 id="main-text" className="main-text">
         Denimology
       </h1>

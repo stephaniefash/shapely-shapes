@@ -1,5 +1,5 @@
 .main-text{
-    background: url("https://i.gifer.com/5BGI.gif") ;
+    background: url("https://nssdata.s3.amazonaws.com/images/galleries/17428/Together-in-denim-Calvin-Klein-Campagna-FW18-pg-10.jpg") ;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     color: deepskyblue;
@@ -8,8 +8,15 @@
 
 .facts-section-container{
     height: 100vh;
+    overflow: hidden;
     display: flex;
     align-items: center;
     background-color: #DBE2E6;
 }
 
+.jeans-image{
+    z-index: 100;
+    width: 600px;
+    height: 721px;
+    object-fit: contain;
+}
