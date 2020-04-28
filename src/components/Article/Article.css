@@ -1,6 +1,7 @@
 .article-section {
   background-color: #7ACDF1;
   padding: 600px 400px 100px 400px;
+  background-image: url("https://elmstok.co.uk/images/cloth-linen-blue-channelbind-a4-hard-cover.jpg");
   display: flex;
   height: 2000px;
   flex-direction: column;
