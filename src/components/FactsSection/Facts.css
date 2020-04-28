@@ -1,0 +1,17 @@
+.main-text{
+    background: url("https://i.gifer.com/5BGI.gif") fixed;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    color: deepskyblue;
+    font-size: 500px;
+    overflow: hidden;
+}
+
+.facts-section-container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #DBE2E6;
+}
+
