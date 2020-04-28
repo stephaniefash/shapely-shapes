@@ -20,3 +20,14 @@
     height: 721px;
     object-fit: contain;
 }
+
+.supporting-text{
+    background: url("https://i.pinimg.com/originals/ef/8b/2a/ef8b2ad40498aa24ca1467590710c507.jpg");
+    position: absolute;
+    width: 400px;
+    padding: 50px 100px 50px 100px;
+    z-index: 400;
+    font-weight: bolder;
+    color: darkorchid;
+    font-size: 30px;
+}

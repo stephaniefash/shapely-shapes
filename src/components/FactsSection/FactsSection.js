@@ -24,7 +24,12 @@ export const FactsSection = () => {
       y: -2000,
     });
 
-    tl.add([tween, jeanJacketTween]);
+    const supportingTextTween = TweenMax.to("#supporting-text", 0, {
+      x: window.innerWidth / 2.3,
+      y: 1000,
+    });
+
+    tl.add([tween, jeanJacketTween, supportingTextTween]);
   };
 
   const moveMediaItemsOnScroll = () => {
@@ -36,18 +41,25 @@ export const FactsSection = () => {
       translateY: 0,
     });
 
+    const supportingTextTween = TweenMax.to("#supporting-text", {
+      translateY: 300,
+    });
+
     new ScrollMagic.Scene({
       triggerHook: "onLeave",
       triggerElement: "#facts-section-container",
       duration: "100%",
     })
-      .setTween([tween, jeanJacketTween])
+      .setTween([tween, jeanJacketTween, supportingTextTween])
       .setPin("#facts-section-container")
       .addTo(controller);
   };
 
   return (
     <div id="facts-section-container" className="facts-section-container">
+      <h1 id="supporting-text" className="supporting-text">
+        These are the facts of the day. The beautful facts. So, beautiful.
+      </h1>
       <img
         id="jean-jacket"
         className="jeans-image"
