@@ -2,6 +2,7 @@ import React, { Component, useEffect } from "react";
 import Header from "./components/Header/Header";
 import { Article } from "./components/Article/Article";
 import "./App.css";
+import { FactsSection } from "./components/FactsSection/FactsSection";
 
 const App = () => {
   return (
@@ -9,9 +10,8 @@ const App = () => {
       <div className="header-div">
         <Header />
       </div>
-      <div id="article-div" className="article-div">
-        <Article id="article" text={""} header={"d"} />
-      </div>
+      <Article id="article" text={""} header={"d"} />
+      <FactsSection />
     </div>
   );
 };
