@@ -1,10 +1,9 @@
 .article-section {
-  background-color: magenta;
-  padding: 0 400px 100px 400px;
+  background-color: #7ACDF1;
+  padding: 600px 400px 100px 400px;
   display: flex;
-  height: 3000px;
+  height: 2000px;
   flex-direction: column;
-  overflow: scroll;
 }
 
 h1 {
