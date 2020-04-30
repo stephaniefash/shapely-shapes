@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { TimelineLite, TimelineMax, TweenMax, Power3 } from "gsap/all";
+import { TimelineLite, TimelineMax, TweenMax } from "gsap/all";
 import { letterArray } from "../../constants/images";
 import ScrollMagic from "scrollmagic";
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
