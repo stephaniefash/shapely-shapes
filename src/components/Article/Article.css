@@ -23,7 +23,6 @@ h1 {
   column-gap: 40px;
   font-size: 40px;
   align-items: end;
-  /*text-align: justify;*/
-  line-height: 28px;
-  color: black;
+  line-height: 40px;
+  color: papayawhip;
 }

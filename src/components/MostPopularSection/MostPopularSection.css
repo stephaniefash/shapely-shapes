@@ -50,6 +50,7 @@ section[class*="info-container-"] > img {
   height: auto;
   margin-left: auto;
   padding: 0;
+  border: black 2px solid;
   display: flex;
 }
 
